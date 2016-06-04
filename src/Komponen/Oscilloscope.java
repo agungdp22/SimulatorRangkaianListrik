@@ -12,8 +12,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.TransferHandler;
 import simulatorrangkaianlistrik.Rangkaian;
 
 //import java.awt.Color;
@@ -36,6 +40,7 @@ public class Oscilloscope extends javax.swing.JFrame {
     public Oscilloscope() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Plot.setFrekuensi(100);
     }
 
     /**
@@ -49,14 +54,23 @@ public class Oscilloscope extends javax.swing.JFrame {
 
         inputtegangan = new javax.swing.JTextField();
         buttontegangan = new javax.swing.JButton();
+        jSlider1 = new javax.swing.JSlider();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         refresh = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jSlider2 = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        inputtegangan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputteganganMouseClicked(evt);
+            }
+        });
         getContentPane().add(inputtegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 90, -1));
 
         buttontegangan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -82,6 +96,24 @@ public class Oscilloscope extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buttontegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 50, -1));
+
+        jSlider1.setMajorTickSpacing(20);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
+        jSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSlider1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jSlider1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jSlider1MouseReleased(evt);
+            }
+        });
+        getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 70, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 80, 30));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 290, 220));
 
         refresh.setText("refresh");
@@ -90,19 +122,39 @@ public class Oscilloscope extends javax.swing.JFrame {
                 refreshMouseClicked(evt);
             }
         });
-        getContentPane().add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 80, 30));
+        getContentPane().add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
+        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel3MouseDragged(evt);
+            }
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/oscilloscope.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+
+        jSlider2.setMajorTickSpacing(20);
+        jSlider2.setPaintLabels(true);
+        jSlider2.setPaintTicks(true);
+        jSlider2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jSlider2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jSlider2MouseReleased(evt);
+            }
+        });
+        getContentPane().add(jSlider2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +182,7 @@ public class Oscilloscope extends javax.swing.JFrame {
         }
         kurva.setColor(Color.red);
         kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+        //jPanel1.repaint();
       
     }//GEN-LAST:event_buttonteganganMouseClicked
 
@@ -156,6 +209,74 @@ public class Oscilloscope extends javax.swing.JFrame {
         setVisible(false);
         //Rangkaian.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" volt");
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MousePressed
+
+    private void jLabel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseDragged
+
+    private void inputteganganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputteganganMouseClicked
+        // TODO add your handling code here:
+        jPanel1.repaint();
+    }//GEN-LAST:event_inputteganganMouseClicked
+
+    private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
+        // TODO add your handling code here:
+        double a = Double.valueOf(jSlider1.getValue());
+        String z = Double.toString(a);
+        //double nilai = Double.parseDouble(inputtegangan.getText());
+        jLabel2.setText(z);
+        Plot.setAmplitudo(a);
+        //Plot.setFrekuensi(100);
+        
+        Graphics kurva = jPanel1.getGraphics();
+        double amplitudo1 = Plot.getAmplitudo();
+        double frekuensi1 = Plot.getFrekuensi();
+        Polygon p = new Polygon();
+        for (int x = -144; x <= 144; x++) {
+            p.addPoint(x + 145, 110 - (int) (amplitudo1 * Math.sin((x / 100.0) * frekuensi1 * Math.PI)));
+        }
+        kurva.setColor(Color.red);
+        kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+    }//GEN-LAST:event_jSlider1MouseReleased
+
+    private void jSlider1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jSlider1MouseClicked
+
+    private void jSlider1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MousePressed
+        // TODO add your handling code here:
+        jPanel1.repaint();
+    }//GEN-LAST:event_jSlider1MousePressed
+
+    private void jSlider2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseReleased
+        // TODO add your handling code here:
+        double a = Double.valueOf(jSlider2.getValue());
+        String z = Double.toString(a);
+        //double nilai = Double.parseDouble(inputtegangan.getText());
+        jLabel4.setText(z);
+        //Plot.setAmplitudo(a);
+        Plot.setFrekuensi(a);
+        
+        Graphics kurva = jPanel1.getGraphics();
+        double amplitudo1 = Plot.getAmplitudo();
+        double frekuensi1 = Plot.getFrekuensi();
+        Polygon p = new Polygon();
+        for (int x = -144; x <= 144; x++) {
+            p.addPoint(x + 145, 110 - (int) (amplitudo1 * Math.sin((x / 100.0) * frekuensi1 * Math.PI)));
+        }
+        kurva.setColor(Color.red);
+        kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+    }//GEN-LAST:event_jSlider2MouseReleased
+
+    private void jSlider2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MousePressed
+        // TODO add your handling code here:
+        jPanel1.repaint();
+    }//GEN-LAST:event_jSlider2MousePressed
 
 //    public static class Terima{
 //        private static double amplitudo;
@@ -295,7 +416,10 @@ public class Oscilloscope extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     protected static javax.swing.JPanel jPanel1;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
     private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }
