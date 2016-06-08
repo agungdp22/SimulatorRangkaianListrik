@@ -6,19 +6,16 @@
 package Komponen;
 
 //import java.awt.BasicStroke;
-
+import Komponen.Hitung;
 import Komponen.Resistor.NilaiResistor;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.TransferHandler;
-import simulatorrangkaianlistrik.Rangkaian;
+import simulatorrangkaianlistrik.Home;
 
 //import java.awt.Color;
 //import java.awt.Graphics;
@@ -36,11 +33,15 @@ public class Oscilloscope extends javax.swing.JFrame {
      * Creates new form Oscilloscope
      */
     int aksi = 0;
+    int plotsinusoidal = 0;
+    int plotdiskret = 0;
+    int plotkapasitor = 0;
+    int plotresistor = 0;
     
     public Oscilloscope() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Plot.setFrekuensi(100);
+        Plot.setFrekuensi(10);
     }
 
     /**
@@ -52,77 +53,48 @@ public class Oscilloscope extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inputtegangan = new javax.swing.JTextField();
-        buttontegangan = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        SliderTegangan = new javax.swing.JSlider();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        refresh = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jSlider2 = new javax.swing.JSlider();
+        SliderFrekuensi = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        inputtegangan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inputteganganMouseClicked(evt);
-            }
-        });
-        getContentPane().add(inputtegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 90, -1));
+        jLabel7.setText("10");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
 
-        buttontegangan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttontegangan.setText("OK");
-        buttontegangan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonteganganMouseClicked(evt);
-            }
-        });
-        buttontegangan.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                buttonteganganStateChanged(evt);
-            }
-        });
-        buttontegangan.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                buttonteganganItemStateChanged(evt);
-            }
-        });
-        buttontegangan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonteganganActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttontegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 50, -1));
+        jLabel6.setText("5");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
-        jSlider1.setMajorTickSpacing(20);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel5.setText("0");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+
+        SliderTegangan.setMajorTickSpacing(20);
+        SliderTegangan.setPaintLabels(true);
+        SliderTegangan.setPaintTicks(true);
+        SliderTegangan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSlider1MouseClicked(evt);
+                SliderTeganganMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jSlider1MousePressed(evt);
+                SliderTeganganMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jSlider1MouseReleased(evt);
+                SliderTeganganMouseReleased(evt);
             }
         });
-        getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 70, 30));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 80, 30));
+        getContentPane().add(SliderTegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 70, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 80, 30));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 290, 220));
-
-        refresh.setText("refresh");
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
-            }
-        });
-        getContentPane().add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,73 +112,46 @@ public class Oscilloscope extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Sinusoidal", "Kotak", "Kapasitor", "Resistor" }));
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/oscilloscope.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
-        jSlider2.setMajorTickSpacing(20);
-        jSlider2.setPaintLabels(true);
-        jSlider2.setPaintTicks(true);
-        jSlider2.addMouseListener(new java.awt.event.MouseAdapter() {
+        SliderFrekuensi.setMajorTickSpacing(1);
+        SliderFrekuensi.setMaximum(10);
+        SliderFrekuensi.setPaintLabels(true);
+        SliderFrekuensi.setPaintTicks(true);
+        SliderFrekuensi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jSlider2MousePressed(evt);
+                SliderFrekuensiMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jSlider2MouseReleased(evt);
+                SliderFrekuensiMouseReleased(evt);
             }
         });
-        getContentPane().add(jSlider2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
+        getContentPane().add(SliderFrekuensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
     
-    private void buttonteganganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonteganganMouseClicked
-        // TODO add your handling code here:x
-        if(aksi==1){
-            Plot.updatepanel();
-        }
-        aksi=0;
-        
-        double nilai = Double.parseDouble(inputtegangan.getText());
-        jLabel2.setText(inputtegangan.getText());
-        Plot.setAmplitudo(nilai);
-        Plot.setFrekuensi(100);
-        
-        Graphics kurva = jPanel1.getGraphics();
-        double amplitudo1 = Plot.getAmplitudo();
-        double frekuensi1 = Plot.getFrekuensi();
-        Polygon p = new Polygon();
-        for (int x = -144; x <= 144; x++) {
-            p.addPoint(x + 145, 110 - (int) (amplitudo1 * Math.sin((x / 100.0) * frekuensi1 * Math.PI)));
-        }
-        kurva.setColor(Color.red);
-        kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
-        //jPanel1.repaint();
-      
-    }//GEN-LAST:event_buttonteganganMouseClicked
-
-    private void buttonteganganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonteganganActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonteganganActionPerformed
-
-    private void buttonteganganStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_buttonteganganStateChanged
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_buttonteganganStateChanged
-
-    private void buttonteganganItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buttonteganganItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonteganganItemStateChanged
-
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-        // TODO add your handling code here:
-        Plot.updatepanel();
-    }//GEN-LAST:event_refreshMouseClicked
-
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         setVisible(false);
+        double nilaitegangan = Plot.getAmplitudo();
+        Hitung.setTegangan(nilaitegangan);
+        Home.labeltegangan.setText(Double.toString(nilaitegangan)+" volt");
         //Rangkaian.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" volt");
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -218,65 +163,126 @@ public class Oscilloscope extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel3MouseDragged
 
-    private void inputteganganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputteganganMouseClicked
+    private void SliderTeganganMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMouseReleased
         // TODO add your handling code here:
-        jPanel1.repaint();
-    }//GEN-LAST:event_inputteganganMouseClicked
-
-    private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
-        // TODO add your handling code here:
-        double a = Double.valueOf(jSlider1.getValue());
+        double a = Double.valueOf(SliderTegangan.getValue());
         String z = Double.toString(a);
         //double nilai = Double.parseDouble(inputtegangan.getText());
         jLabel2.setText(z);
         Plot.setAmplitudo(a);
         //Plot.setFrekuensi(100);
-        
-        Graphics kurva = jPanel1.getGraphics();
-        double amplitudo1 = Plot.getAmplitudo();
-        double frekuensi1 = Plot.getFrekuensi();
-        Polygon p = new Polygon();
-        for (int x = -144; x <= 144; x++) {
-            p.addPoint(x + 145, 110 - (int) (amplitudo1 * Math.sin((x / 100.0) * frekuensi1 * Math.PI)));
+        if(plotdiskret == 1) {
+            Plot.KurvaDiskret();
+            plotsinusoidal = 0;
+            plotkapasitor = 0;
+            plotresistor = 0;
         }
-        kurva.setColor(Color.red);
-        kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
-    }//GEN-LAST:event_jSlider1MouseReleased
+        else if(plotsinusoidal == 1) {
+            Plot.KurvaSinusoidal();
+            plotdiskret = 0;
+            plotkapasitor = 0;
+            plotresistor = 0;
+        }
+        else if(plotkapasitor == 1) {
+            Plot.KurvaKapasitor();
+            plotdiskret = 0;
+            plotsinusoidal = 0;
+            plotresistor = 0;
+        }
+        else if(plotresistor == 1) {
+            Plot.KurvaResistor();
+            plotdiskret = 0;
+            plotsinusoidal = 0;
+            plotkapasitor = 0;
+        }
+    }//GEN-LAST:event_SliderTeganganMouseReleased
 
-    private void jSlider1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseClicked
+    private void SliderTeganganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jSlider1MouseClicked
+    }//GEN-LAST:event_SliderTeganganMouseClicked
 
-    private void jSlider1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MousePressed
+    private void SliderTeganganMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMousePressed
         // TODO add your handling code here:
         jPanel1.repaint();
-    }//GEN-LAST:event_jSlider1MousePressed
+    }//GEN-LAST:event_SliderTeganganMousePressed
 
-    private void jSlider2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseReleased
+    private void SliderFrekuensiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMouseReleased
         // TODO add your handling code here:
-        double a = Double.valueOf(jSlider2.getValue());
+        double a = Double.valueOf(SliderFrekuensi.getValue());
         String z = Double.toString(a);
         //double nilai = Double.parseDouble(inputtegangan.getText());
         jLabel4.setText(z);
         //Plot.setAmplitudo(a);
         Plot.setFrekuensi(a);
         
-        Graphics kurva = jPanel1.getGraphics();
-        double amplitudo1 = Plot.getAmplitudo();
-        double frekuensi1 = Plot.getFrekuensi();
-        Polygon p = new Polygon();
-        for (int x = -144; x <= 144; x++) {
-            p.addPoint(x + 145, 110 - (int) (amplitudo1 * Math.sin((x / 100.0) * frekuensi1 * Math.PI)));
+        if(plotdiskret == 1) {
+            Plot.KurvaDiskret();
+            plotsinusoidal = 0;
+            plotkapasitor = 0;
+            plotresistor = 0;
         }
-        kurva.setColor(Color.red);
-        kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
-    }//GEN-LAST:event_jSlider2MouseReleased
+        else if(plotsinusoidal == 1) {
+            Plot.KurvaSinusoidal();
+            plotdiskret = 0;
+            plotkapasitor = 0;
+            plotresistor = 0;
+        }
+        else if(plotkapasitor == 1) {
+            Plot.KurvaKapasitor();
+            plotdiskret = 0;
+            plotsinusoidal = 0;
+            plotresistor = 0;
+        }
+        else if(plotresistor == 1) {
+            Plot.KurvaResistor();
+            plotdiskret = 0;
+            plotsinusoidal = 0;
+            plotkapasitor = 0;
+        }
+    }//GEN-LAST:event_SliderFrekuensiMouseReleased
 
-    private void jSlider2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MousePressed
+    private void SliderFrekuensiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMousePressed
         // TODO add your handling code here:
         jPanel1.repaint();
-    }//GEN-LAST:event_jSlider2MousePressed
+    }//GEN-LAST:event_SliderFrekuensiMousePressed
+
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        int p = jComboBox1.getSelectedIndex();
+        switch (p) {
+            case 1:
+                plotsinusoidal = 1;
+                plotdiskret = 0;
+                plotkapasitor = 0;
+                plotresistor = 0;
+                Plot.KurvaSinusoidal();
+                break;
+            case 2:
+                plotsinusoidal = 0;
+                plotdiskret = 1;
+                plotkapasitor = 0;
+                plotresistor = 0;
+                Plot.KurvaDiskret();
+                break;
+            case 3:
+                plotsinusoidal = 0;
+                plotdiskret = 0;
+                plotkapasitor = 1;
+                plotresistor = 0;
+                Plot.KurvaKapasitor();
+                break;
+            case 4:
+                plotsinusoidal = 0;
+                plotdiskret = 0;
+                plotkapasitor = 0;
+                plotresistor = 1;
+                Plot.KurvaResistor();
+            break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
 
 //    public static class Terima{
 //        private static double amplitudo;
@@ -411,15 +417,16 @@ public class Oscilloscope extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton buttontegangan;
-    public static javax.swing.JTextField inputtegangan;
+    private javax.swing.JSlider SliderFrekuensi;
+    private javax.swing.JSlider SliderTegangan;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     protected static javax.swing.JPanel jPanel1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }

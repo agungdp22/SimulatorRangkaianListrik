@@ -9,6 +9,7 @@ package Komponen;
  *
  * @author Agung DP
  */
+import Komponen.Resistor.NilaiResistor;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -38,13 +39,22 @@ import javax.swing.SwingUtilities;
 public class Plot extends Oscilloscope{
         private static double amplitudo;
         private static double frekuensi;
+        private static double C = 1;
+        private static double R = 10;
         
         public static void setAmplitudo(double nilai){
             Plot.amplitudo = nilai;
         }
         public static void setFrekuensi(double nilai){
-            Plot.frekuensi = nilai/50;
+            Plot.frekuensi = nilai;
         }
+//        public static void setKapasitor(double kapasitor){
+//            Plot.C = kapasitor;
+//        }
+//        public static void setHambatan(){
+//            Plot.R = NilaiResistor.getHambatanMinimum();
+//        }
+        
         public static double getFrekuensi(){
             return frekuensi;
         }
@@ -53,6 +63,95 @@ public class Plot extends Oscilloscope{
         }
         public static void updatepanel(){
             jPanel1.updateUI();
+        }
+        
+        public static void KurvaSinusoidal(){
+            Graphics kurva = jPanel1.getGraphics();
+            double F = frekuensi/3;
+            Polygon p = new Polygon();
+            for (int x = 0; x <= 288; x++) {
+                p.addPoint(x, 110 - (int) (amplitudo * Math.sin((x / 100.0) * 2 * F * Math.PI)));
+            }
+            kurva.setColor(Color.red);
+            kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+        }
+        
+        public static void KurvaDiskret(){
+            Graphics kurva = jPanel1.getGraphics();
+            Polygon p = new Polygon();
+            //int n = (int)(288/waktu);
+            int h = (int)(300/frekuensi);
+            
+            int titikawal = 0;
+            int titikakhir = 300;
+            for(int y=1; y<=frekuensi;y++){
+               titikakhir = titikawal + h;
+               for (int x = titikawal; x <= titikakhir; x++) {
+                    if(y%2 == 1) {
+                        p.addPoint(x, (int)(110 - amplitudo));
+                    }else{
+                        p.addPoint(x, (int)(110 + amplitudo));
+                    }
+                }
+               titikawal = titikawal + h;
+            }
+                
+            kurva.setColor(Color.blue);
+            kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+        }
+        
+        public static void KurvaKapasitor(){
+            int waktu = (int) (300/frekuensi);
+            double Vc = 1 - Math.exp(-waktu/(R*C));
+            
+            Graphics kurva = jPanel1.getGraphics();
+            Polygon p = new Polygon();
+            int h = (int)(300/frekuensi);
+            
+            int titikawal = 0;
+            int titikakhir ;
+            for(int y=1; y<=frekuensi;y++){
+               titikakhir = titikawal + h;
+               int xx = 0;
+               for (int x = titikawal; x <= titikakhir; x++) {
+                    if(y%2 == 1) {
+                        p.addPoint(x, (int)(110 - ( amplitudo * (1 - Math.exp(-xx/(R*C))) )));
+                    }else{
+                        p.addPoint(x, (int)(110 + ( amplitudo * (1 - Math.exp(-xx/(R*C))) )));
+                    }
+                    xx++;
+                }
+               titikawal = titikawal + h;
+            }
+            kurva.setColor(Color.black);
+            kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+        }
+        
+        public static void KurvaResistor(){
+            int waktu = (int) (300/frekuensi);
+            double Vc = 1 - Math.exp(-waktu/(R*C));
+            
+            Graphics kurva = jPanel1.getGraphics();
+            Polygon p = new Polygon();
+            int h = (int)(300/frekuensi);
+            
+            int titikawal = 0;
+            int titikakhir ;
+            for(int y=1; y<=frekuensi;y++){
+               titikakhir = titikawal + h;
+               int xx =0;
+               for (int x = titikawal; x <= titikakhir; x++) {
+                    if(y%2 == 1) {
+                        p.addPoint(x, (int)(110 - ( amplitudo * (Math.exp(-xx/(R*C))) )));
+                    }else{
+                        p.addPoint(x, (int)(110 + ( amplitudo * (Math.exp(-xx/(R*C))) )));
+                    }
+                    xx++;
+                }
+               titikawal = titikawal + h;
+            }
+            kurva.setColor(Color.black);
+            kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
         }
 }
 /*

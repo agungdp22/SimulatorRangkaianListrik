@@ -29,12 +29,11 @@ public class Hitung {
         Hitung.hambatan = hambatan;
     }
     
-    public static String getHitungArus(){
+    public static double getHitungArus(){
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
         arus = tegangan/hambatan;
-        String hasil = df.format(arus);
-        //String hasil = Double.toString(arus);
+        double hasil = Double.parseDouble (df.format(arus));
         return hasil;
     }
     

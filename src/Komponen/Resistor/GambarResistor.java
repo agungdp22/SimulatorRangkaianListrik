@@ -6,7 +6,7 @@
 package Komponen.Resistor;
 
 import Komponen.Hitung;
-import simulatorrangkaianlistrik.Rangkaian;
+import simulatorrangkaianlistrik.Home;
 /**
  *
  * @author Agung DP
@@ -369,13 +369,13 @@ public class GambarResistor extends javax.swing.JFrame {
             String hasil = Long.toString(nilaihambatan);
             outputnilai.setText("Nilai = "+hasil+" Ohm");
         }
-        Hitung.setHambatan(nilaihambatan);
+        //Hitung.setHambatan(nilaihambatan);
     }//GEN-LAST:event_hitungMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
         setVisible(false);
-        Rangkaian.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" ohm");
+        Home.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" ohm");
     }//GEN-LAST:event_backMouseClicked
 
     private void OkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkMouseClicked

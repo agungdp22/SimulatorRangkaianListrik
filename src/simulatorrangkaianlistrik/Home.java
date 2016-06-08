@@ -14,12 +14,12 @@ import Komponen.Oscilloscope;
  *
  * @author Agung DP
  */
-public class Rangkaian extends javax.swing.JFrame {
+public class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form Rangkaian
      */
-    public Rangkaian() {
+    public Home() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -33,6 +33,7 @@ public class Rangkaian extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labeltegangan = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         labelnilaihambatan = new javax.swing.JLabel();
         parameter2 = new javax.swing.JTextField();
@@ -44,10 +45,15 @@ public class Rangkaian extends javax.swing.JFrame {
         field2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        rangkaianseri = new javax.swing.JLabel();
+        rangkaianparalel = new javax.swing.JLabel();
+        rangkaiancampuran = new javax.swing.JLabel();
+        rangkaianrc = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(labeltegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 110, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/HITUNG SURVIVAL_ICON.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -55,10 +61,10 @@ public class Rangkaian extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, -1, -1));
 
         labelnilaihambatan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(labelnilaihambatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 110, 20));
+        getContentPane().add(labelnilaihambatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 110, 20));
 
         parameter2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         parameter2.addActionListener(new java.awt.event.ActionListener() {
@@ -66,10 +72,10 @@ public class Rangkaian extends javax.swing.JFrame {
                 parameter2ActionPerformed(evt);
             }
         });
-        getContentPane().add(parameter2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 131, 37));
+        getContentPane().add(parameter2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 131, 37));
 
         arus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(arus, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 193, 37));
+        getContentPane().add(arus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 193, 37));
 
         parameter1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         parameter1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +83,7 @@ public class Rangkaian extends javax.swing.JFrame {
                 parameter1ActionPerformed(evt);
             }
         });
-        getContentPane().add(parameter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 128, 37));
+        getContentPane().add(parameter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 128, 37));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--", "Hitung Arus", "Hitung Tegangan", "Hitung Hambatan" }));
         jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -89,11 +95,11 @@ public class Rangkaian extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 37));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, 37));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("OUTPUT");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, -1, -1));
 
         field1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 130, 20));
@@ -107,7 +113,7 @@ public class Rangkaian extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/tentukantegangan.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,10 +121,42 @@ public class Rangkaian extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/bg.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
+        rangkaianseri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-seri.png"))); // NOI18N
+        rangkaianseri.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rangkaianseriMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rangkaianseri, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        rangkaianparalel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-paralel.png"))); // NOI18N
+        rangkaianparalel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rangkaianparalelMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rangkaianparalel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+
+        rangkaiancampuran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-campuran.png"))); // NOI18N
+        rangkaiancampuran.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rangkaiancampuranMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rangkaiancampuran, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+
+        rangkaianrc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-rc.png"))); // NOI18N
+        rangkaianrc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rangkaianrcMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rangkaianrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/bg.png"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,21 +166,22 @@ public class Rangkaian extends javax.swing.JFrame {
         int p = jComboBox1.getSelectedIndex();
         switch (p) {
             case 1:
-                Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
+                //Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
                 //Hitung.setHambatan(Double.parseDouble(parameter2.getText()));
                 field2.setText("Hambatan");
+                //String nilaiakhir = Double.toString(Hitung.getHitungArus());
                 arus.setText("Arus = "+Hitung.getHitungArus()+" A");
                 break;
             case 2:
-                Hitung.setArus(Double.parseDouble(parameter1.getText()));
+                //Hitung.setArus(Double.parseDouble(parameter1.getText()));
                 //Hitung.setHambatan(Double.parseDouble(parameter2.getText()));
                 field1.setText("Arus");
                 field2.setText("Hambatan");
                 arus.setText("Tegangan = "+Hitung.getHitungTegangan()+" V");
                 break;
             case 3:
-                Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
-                Hitung.setArus(Double.parseDouble(parameter2.getText()));
+                //Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
+                //Hitung.setArus(Double.parseDouble(parameter2.getText()));
                 field1.setText("Tegangan");
                 field2.setText("Arus");
                 arus.setText("Hambatan = "+Hitung.getHitungHambatan()+" Ohm");
@@ -151,14 +190,6 @@ public class Rangkaian extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void parameter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_parameter2ActionPerformed
-
-    private void parameter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_parameter1ActionPerformed
 
     private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
         // TODO add your handling code here:
@@ -201,6 +232,50 @@ public class Rangkaian extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void rangkaianseriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianseriMouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RangkaianSeri().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_rangkaianseriMouseClicked
+
+    private void rangkaianparalelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianparalelMouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RangkaianParalel().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_rangkaianparalelMouseClicked
+
+    private void rangkaiancampuranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaiancampuranMouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RangkaianCampuran().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_rangkaiancampuranMouseClicked
+
+    private void rangkaianrcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianrcMouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RangkaianRC().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_rangkaianrcMouseClicked
+
+    private void parameter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_parameter1ActionPerformed
+
+    private void parameter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_parameter2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,16 +314,21 @@ public class Rangkaian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arus;
+    private javax.swing.JLabel background;
     private javax.swing.JLabel field1;
     private javax.swing.JLabel field2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public static javax.swing.JLabel labelnilaihambatan;
+    public static javax.swing.JLabel labeltegangan;
     private javax.swing.JTextField parameter1;
     private javax.swing.JTextField parameter2;
+    private javax.swing.JLabel rangkaiancampuran;
+    private javax.swing.JLabel rangkaianparalel;
+    private javax.swing.JLabel rangkaianrc;
+    private javax.swing.JLabel rangkaianseri;
     // End of variables declaration//GEN-END:variables
 }

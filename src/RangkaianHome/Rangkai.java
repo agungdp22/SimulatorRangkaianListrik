@@ -36,7 +36,7 @@ public class Rangkai extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/resistor-rangkaian.png"))); // NOI18N
         jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
                 jLabel1MouseWheelMoved(evt);
@@ -58,16 +58,16 @@ public class Rangkai extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(420, Short.MAX_VALUE)
+                .addContainerGap(713, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(108, 108, 108))
+                .addGap(267, 267, 267))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(99, 99, 99)
                 .addComponent(jLabel1)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
 
         pack();

@@ -5,16 +5,16 @@
  */
 package Controller;
 
-import simulatorrangkaianlistrik.Rangkaian;
+import simulatorrangkaianlistrik.Home;
 
 /**
  *
  * @author Agung DP
  */
 public class TampilanController {
-    Rangkaian rangkaian;
+    Home rangkaian;
     
-    public TampilanController(Rangkaian rangkaian){
+    public TampilanController(Home rangkaian){
         this.rangkaian = rangkaian;
     }
     
