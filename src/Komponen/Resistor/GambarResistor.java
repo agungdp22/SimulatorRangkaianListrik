@@ -6,6 +6,7 @@
 package Komponen.Resistor;
 
 import Komponen.Hitung;
+import Komponen.Plot;
 import simulatorrangkaianlistrik.Home;
 /**
  *
@@ -397,6 +398,7 @@ public class GambarResistor extends javax.swing.JFrame {
         //method untuk main page
         long nilaihambatan2 = NilaiResistor.getHambatanMinimum();
         Hitung.setHambatan(nilaihambatan2);
+        Plot.setHambatan(nilaihambatan2);
         //end
     }//GEN-LAST:event_OkMouseClicked
 

@@ -61,7 +61,7 @@ public class Home extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, -1, -1));
 
         labelnilaihambatan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         getContentPane().add(labelnilaihambatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 110, 20));
@@ -95,7 +95,7 @@ public class Home extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, 37));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 37));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("OUTPUT");
@@ -113,7 +113,7 @@ public class Home extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/tentukantegangan.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,7 +121,7 @@ public class Home extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, -1, -1));
 
         rangkaianseri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-seri.png"))); // NOI18N
         rangkaianseri.addMouseListener(new java.awt.event.MouseAdapter() {

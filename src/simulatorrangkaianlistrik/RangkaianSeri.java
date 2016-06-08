@@ -24,6 +24,7 @@ public class RangkaianSeri extends javax.swing.JFrame {
     private Timer timer;
     public RangkaianSeri() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ipb.setEnabled(true);
         start();
     }
@@ -53,35 +54,17 @@ public class RangkaianSeri extends javax.swing.JFrame {
         lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ipb.setBackground(new java.awt.Color(0, 0, 0));
         ipb.setFont(new java.awt.Font("DialogInput", 0, 60)); // NOI18N
         ipb.setForeground(new java.awt.Color(255, 255, 0));
         ipb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/ipb.png"))); // NOI18N
         ipb.setOpaque(true);
+        getContentPane().add(ipb, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 640, -1));
 
         lbl.setFont(new java.awt.Font("Tahoma", 0, 60)); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ipb, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ipb)
-                .addGap(0, 10, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 227, 201));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

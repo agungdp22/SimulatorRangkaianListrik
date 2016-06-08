@@ -42,6 +42,7 @@ public class Oscilloscope extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         Plot.setFrekuensi(10);
+        //Plot.setAmplitudo(100);
     }
 
     /**
@@ -77,7 +78,8 @@ public class Oscilloscope extends javax.swing.JFrame {
         jLabel5.setText("0");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
-        SliderTegangan.setMajorTickSpacing(20);
+        SliderTegangan.setMajorTickSpacing(1);
+        SliderTegangan.setMaximum(10);
         SliderTegangan.setPaintLabels(true);
         SliderTegangan.setPaintTicks(true);
         SliderTegangan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +114,7 @@ public class Oscilloscope extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Sinusoidal", "Kotak", "Kapasitor", "Resistor" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Sinusoidal", "Kotak" }));
         jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -169,7 +171,7 @@ public class Oscilloscope extends javax.swing.JFrame {
         String z = Double.toString(a);
         //double nilai = Double.parseDouble(inputtegangan.getText());
         jLabel2.setText(z);
-        Plot.setAmplitudo(a);
+        Plot.setAmplitudo(a*10);
         //Plot.setFrekuensi(100);
         if(plotdiskret == 1) {
             Plot.KurvaDiskret();

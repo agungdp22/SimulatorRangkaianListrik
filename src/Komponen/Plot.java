@@ -18,29 +18,14 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
-//public class Plot exxtends JFrame{
+import simulatorrangkaianlistrik.RangkaianRC;
     
-    
-//    public Plot() {
-//    setLayout(new BorderLayout());
-//    add(new DrawSine(), BorderLayout.CENTER);
-//    }
-//
-//    public static void runn(){
-//    Plot frame = new Plot();
-//    frame.setSize(400, 300);
-//    frame.setTitle("Plot");
-//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    frame.setLocationRelativeTo(null);
-//    frame.setVisible(true);
-//}
-    
-public class Plot extends Oscilloscope{
+public class Plot extends Oscilloscope {
         private static double amplitudo;
         private static double frekuensi;
         private static double C = 1;
-        private static double R = 10;
+        private static double R;
+        static JPanel layarRC = RangkaianRC.layar;
         
         public static void setAmplitudo(double nilai){
             Plot.amplitudo = nilai;
@@ -48,12 +33,12 @@ public class Plot extends Oscilloscope{
         public static void setFrekuensi(double nilai){
             Plot.frekuensi = nilai;
         }
-//        public static void setKapasitor(double kapasitor){
-//            Plot.C = kapasitor;
-//        }
-//        public static void setHambatan(){
-//            Plot.R = NilaiResistor.getHambatanMinimum();
-//        }
+        public static void setKapasitor(double kapasitor){
+            Plot.C = kapasitor;
+        }
+        public static void setHambatan(double resistor){
+            Plot.R = resistor;
+        }
         
         public static double getFrekuensi(){
             return frekuensi;
@@ -63,6 +48,7 @@ public class Plot extends Oscilloscope{
         }
         public static void updatepanel(){
             jPanel1.updateUI();
+            layarRC.updateUI();
         }
         
         public static void KurvaSinusoidal(){
@@ -78,8 +64,8 @@ public class Plot extends Oscilloscope{
         
         public static void KurvaDiskret(){
             Graphics kurva = jPanel1.getGraphics();
+            Graphics kurva2 = layarRC.getGraphics();
             Polygon p = new Polygon();
-            //int n = (int)(288/waktu);
             int h = (int)(300/frekuensi);
             
             int titikawal = 0;
@@ -98,13 +84,12 @@ public class Plot extends Oscilloscope{
                 
             kurva.setColor(Color.blue);
             kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+            kurva2.setColor(Color.green);
+            kurva2.drawPolyline(p.xpoints, p.ypoints, p.npoints);
         }
         
         public static void KurvaKapasitor(){
-            int waktu = (int) (300/frekuensi);
-            double Vc = 1 - Math.exp(-waktu/(R*C));
-            
-            Graphics kurva = jPanel1.getGraphics();
+            Graphics kurva = layarRC.getGraphics();
             Polygon p = new Polygon();
             int h = (int)(300/frekuensi);
             
@@ -131,7 +116,7 @@ public class Plot extends Oscilloscope{
             int waktu = (int) (300/frekuensi);
             double Vc = 1 - Math.exp(-waktu/(R*C));
             
-            Graphics kurva = jPanel1.getGraphics();
+            Graphics kurva = layarRC.getGraphics();
             Polygon p = new Polygon();
             int h = (int)(300/frekuensi);
             
