@@ -14,8 +14,10 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.image.ImageObserver;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 import simulatorrangkaianlistrik.Home;
+import simulatorrangkaianlistrik.RangkaianRC;
 
 //import java.awt.Color;
 //import java.awt.Graphics;
@@ -37,12 +39,13 @@ public class Oscilloscope extends javax.swing.JFrame {
     int plotdiskret = 0;
     int plotkapasitor = 0;
     int plotresistor = 0;
+    static JPanel layarRC = RangkaianRC.layar;
     
     public Oscilloscope() {
         initComponents();
         this.setLocationRelativeTo(null);
         Plot.setFrekuensi(10);
-        //Plot.setAmplitudo(100);
+        Plot.setAmplitudo(100);
     }
 
     /**
@@ -65,18 +68,20 @@ public class Oscilloscope extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         SliderFrekuensi = new javax.swing.JSlider();
+        ok = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("10");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
 
         jLabel6.setText("5");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
         jLabel5.setText("0");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         SliderTegangan.setMajorTickSpacing(1);
         SliderTegangan.setMaximum(10);
@@ -93,10 +98,10 @@ public class Oscilloscope extends javax.swing.JFrame {
                 SliderTeganganMouseReleased(evt);
             }
         });
-        getContentPane().add(SliderTegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 70, 30));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 80, 30));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 290, 220));
+        getContentPane().add(SliderTegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 70, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 80, 30));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 290, 220));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,9 +117,14 @@ public class Oscilloscope extends javax.swing.JFrame {
                 jLabel3MouseDragged(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Sinusoidal", "Kotak" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
         jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -124,10 +134,10 @@ public class Oscilloscope extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/oscilloscope.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 600, -1));
 
         SliderFrekuensi.setMajorTickSpacing(1);
         SliderFrekuensi.setMaximum(10);
@@ -141,7 +151,19 @@ public class Oscilloscope extends javax.swing.JFrame {
                 SliderFrekuensiMouseReleased(evt);
             }
         });
-        getContentPane().add(SliderFrekuensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
+        getContentPane().add(SliderFrekuensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, -1, -1));
+
+        ok.setText("OK");
+        ok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okMouseClicked(evt);
+            }
+        });
+        getContentPane().add(ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setText("Menentukan Tegangan Input");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,6 +229,7 @@ public class Oscilloscope extends javax.swing.JFrame {
     private void SliderTeganganMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMousePressed
         // TODO add your handling code here:
         jPanel1.repaint();
+        layarRC.repaint();
     }//GEN-LAST:event_SliderTeganganMousePressed
 
     private void SliderFrekuensiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMouseReleased
@@ -247,6 +270,7 @@ public class Oscilloscope extends javax.swing.JFrame {
     private void SliderFrekuensiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMousePressed
         // TODO add your handling code here:
         jPanel1.repaint();
+        layarRC.repaint();
     }//GEN-LAST:event_SliderFrekuensiMousePressed
 
     private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
@@ -285,6 +309,17 @@ public class Oscilloscope extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+        jPanel1.repaint();
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+        double nilaitegangan = Plot.getAmplitudo();
+    }//GEN-LAST:event_okMouseClicked
 
 //    public static class Terima{
 //        private static double amplitudo;
@@ -429,6 +464,8 @@ public class Oscilloscope extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     protected static javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }

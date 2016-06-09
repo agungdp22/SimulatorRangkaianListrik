@@ -23,7 +23,7 @@ import simulatorrangkaianlistrik.RangkaianRC;
 public class Plot extends Oscilloscope {
         private static double amplitudo;
         private static double frekuensi;
-        private static double C = 1;
+        private static double C;
         private static double R;
         static JPanel layarRC = RangkaianRC.layar;
         

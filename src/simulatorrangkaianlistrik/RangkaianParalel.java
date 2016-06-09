@@ -5,6 +5,8 @@
  */
 package simulatorrangkaianlistrik;
 
+import Komponen.Oscilloscope;
+
 /**
  *
  * @author Agung DP
@@ -14,9 +16,11 @@ public class RangkaianParalel extends javax.swing.JFrame {
     /**
      * Creates new form RangkaianParalel
      */
+    int klik = 0;
     public RangkaianParalel() {
         initComponents();
         this.setLocationRelativeTo(null);
+        led.setEnabled(false);
     }
 
     /**
@@ -28,11 +32,120 @@ public class RangkaianParalel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        exit = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        led = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        R1 = new javax.swing.JLabel();
+        R2 = new javax.swing.JLabel();
+        R3 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        saklar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Keluar.png"))); // NOI18N
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 320, 20));
+
+        led.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/led.png"))); // NOI18N
+        getContentPane().add(led, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, 20));
+
+        R1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        getContentPane().add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, -1, -1));
+
+        R2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        getContentPane().add(R2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
+
+        R3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        getContentPane().add(R3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 60, 140));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 60, 50));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 120, 10));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 120, 10));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/baterai.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+
+        saklar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saklarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(saklar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 40, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 130, 20));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 140));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 60, 60));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 60, 140));
+
+        jLabel12.setFont(new java.awt.Font("Myriad Pro", 0, 36)); // NOI18N
+        jLabel12.setText("Rangkaian Paralel Elektronika");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void saklarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saklarMouseClicked
+        // TODO add your handling code here:
+        klik++;
+        if(klik%2 == 1) led.setEnabled(true);
+        else led.setEnabled(false);
+    }//GEN-LAST:event_saklarMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Oscilloscope().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -70,5 +183,23 @@ public class RangkaianParalel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel R1;
+    private javax.swing.JLabel R2;
+    private javax.swing.JLabel R3;
+    private javax.swing.JLabel exit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel led;
+    private javax.swing.JButton saklar;
     // End of variables declaration//GEN-END:variables
 }

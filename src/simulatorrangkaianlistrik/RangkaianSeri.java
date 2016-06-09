@@ -5,6 +5,8 @@
  */
 package simulatorrangkaianlistrik;
 
+import Komponen.Oscilloscope;
+import Komponen.Resistor.GambarResistor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -18,28 +20,14 @@ public class RangkaianSeri extends javax.swing.JFrame {
     /**
      * Creates new form RangkaianSeri
      */
-    private final int nIpb = 10;
-    int teks = 0;
-    int r = teks;
+    int klik = 0;
+    int status;
     private Timer timer;
     public RangkaianSeri() {
         initComponents();
         this.setLocationRelativeTo(null);
-        ipb.setEnabled(true);
-        start();
-    }
-    
-    private void start(){
-        int speed = 1000;
-        ActionListener action = new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                lbl.setText(String.valueOf(r));
-                r++;
-            }
-        };
-        timer = new Timer(speed, action);
-        timer.start();
-    }
+        led.setEnabled(false);
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,24 +38,124 @@ public class RangkaianSeri extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ipb = new javax.swing.JLabel();
-        lbl = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        led = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        R1 = new javax.swing.JLabel();
+        R2 = new javax.swing.JLabel();
+        R3 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        saklar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        exit = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ipb.setBackground(new java.awt.Color(0, 0, 0));
-        ipb.setFont(new java.awt.Font("DialogInput", 0, 60)); // NOI18N
-        ipb.setForeground(new java.awt.Color(255, 255, 0));
-        ipb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/ipb.png"))); // NOI18N
-        ipb.setOpaque(true);
-        getContentPane().add(ipb, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 640, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 320, 20));
 
-        lbl.setFont(new java.awt.Font("Tahoma", 0, 60)); // NOI18N
-        getContentPane().add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 227, 201));
+        led.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/led.png"))); // NOI18N
+        getContentPane().add(led, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, 20));
+
+        R1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        getContentPane().add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+
+        R2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        getContentPane().add(R2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
+
+        R3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
+        R3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                R3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(R3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 60, 140));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 60, 50));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/baterai.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+
+        saklar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saklarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(saklar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 40, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 130, 20));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 60, 60));
+
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Keluar.png"))); // NOI18N
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Myriad Pro", 0, 36)); // NOI18N
+        jLabel12.setText("Rangkaian Seri Elektronika");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Oscilloscope().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void saklarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saklarMouseClicked
+        // TODO add your handling code here:
+        klik++;
+        if(klik%2 == 1) {
+            led.setEnabled(true);
+            status = 1;
+        }
+        else {
+            led.setEnabled(false);
+            status = 0;
+        }
+    }//GEN-LAST:event_saklarMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void R3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_R3MouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GambarResistor().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_R3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -105,7 +193,19 @@ public class RangkaianSeri extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ipb;
-    private javax.swing.JLabel lbl;
+    private javax.swing.JLabel R1;
+    private javax.swing.JLabel R2;
+    private javax.swing.JLabel R3;
+    private javax.swing.JLabel exit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel led;
+    private javax.swing.JButton saklar;
     // End of variables declaration//GEN-END:variables
 }

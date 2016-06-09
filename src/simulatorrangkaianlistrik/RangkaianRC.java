@@ -23,6 +23,11 @@ public class RangkaianRC extends javax.swing.JFrame {
     public RangkaianRC() {
         initComponents();
         this.setLocationRelativeTo(null);
+        kabelkapasitor.setVisible(false);
+        kabelresistor.setVisible(false);
+        ket.setVisible(false);
+        ket1.setVisible(false);
+        ket2.setVisible(false);
     }
 
     /**
@@ -36,6 +41,8 @@ public class RangkaianRC extends javax.swing.JFrame {
 
         layar = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        kabelresistor = new javax.swing.JLabel();
+        kabelkapasitor = new javax.swing.JLabel();
         oskiloskopkapasitor = new javax.swing.JLabel();
         sumbertegangan = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
@@ -48,6 +55,10 @@ public class RangkaianRC extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        ket1 = new javax.swing.JLabel();
+        ket = new javax.swing.JLabel();
+        ket2 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,6 +93,12 @@ public class RangkaianRC extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
 
+        kabelresistor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/kabelresistor.png"))); // NOI18N
+        getContentPane().add(kabelresistor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+
+        kabelkapasitor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/kabelkapasitor.png"))); // NOI18N
+        getContentPane().add(kabelkapasitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
+
         oskiloskopkapasitor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/oscilloscope.png"))); // NOI18N
         getContentPane().add(oskiloskopkapasitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
@@ -99,7 +116,7 @@ public class RangkaianRC extends javax.swing.JFrame {
                 exitMouseClicked(evt);
             }
         });
-        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 0, -1, -1));
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, -1, -1));
 
         resistor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/resistor-rangkaian2.png"))); // NOI18N
         resistor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,6 +156,25 @@ public class RangkaianRC extends javax.swing.JFrame {
         jLabel4.setText("Rangkaian Resistor-Kapasitor");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        ket1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/kabelijo.png"))); // NOI18N
+        ket1.setText("Sinyal Input");
+        getContentPane().add(ket1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, -1, -1));
+
+        ket.setText("Keterangan:");
+        getContentPane().add(ket, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, -1));
+
+        ket2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/kabelitem.png"))); // NOI18N
+        ket2.setText("Sinyal Output");
+        getContentPane().add(ket2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, -1, 20));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/keterangan.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,10 +197,14 @@ public class RangkaianRC extends javax.swing.JFrame {
         int p = jComboBox1.getSelectedIndex();
         switch (p) {
             case 1:
+                kabelkapasitor.setVisible(true);
+                kabelresistor.setVisible(false);
                 Plot.KurvaDiskret();
                 Plot.KurvaKapasitor();
                 break;
             case 2:
+                kabelkapasitor.setVisible(false);
+                kabelresistor.setVisible(true);
                 Plot.KurvaDiskret();
                 Plot.KurvaResistor();
                 break;
@@ -176,6 +216,9 @@ public class RangkaianRC extends javax.swing.JFrame {
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
         // TODO add your handling code here:
         Plot.updatepanel();
+        ket.setVisible(true);
+        ket1.setVisible(true);
+        ket2.setVisible(true);
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void resistorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resistorMouseClicked
@@ -195,6 +238,15 @@ public class RangkaianRC extends javax.swing.JFrame {
                     }
                 });
     }//GEN-LAST:event_kapasitorMouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new KeteranganRC().setVisible(true);
+                    }
+                });
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -235,13 +287,19 @@ public class RangkaianRC extends javax.swing.JFrame {
     private javax.swing.JLabel exit;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel kabelkapasitor;
+    private javax.swing.JLabel kabelresistor;
     private javax.swing.JLabel kapasitor;
+    private javax.swing.JLabel ket;
+    private javax.swing.JLabel ket1;
+    private javax.swing.JLabel ket2;
     public static javax.swing.JPanel layar;
     private javax.swing.JLabel oskiloskopkapasitor;
     private javax.swing.JLabel resistor;

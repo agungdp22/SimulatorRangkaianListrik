@@ -47,7 +47,6 @@ public class Home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         rangkaianseri = new javax.swing.JLabel();
         rangkaianparalel = new javax.swing.JLabel();
-        rangkaiancampuran = new javax.swing.JLabel();
         rangkaianrc = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
@@ -129,7 +128,7 @@ public class Home extends javax.swing.JFrame {
                 rangkaianseriMouseClicked(evt);
             }
         });
-        getContentPane().add(rangkaianseri, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        getContentPane().add(rangkaianseri, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         rangkaianparalel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-paralel.png"))); // NOI18N
         rangkaianparalel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,15 +136,7 @@ public class Home extends javax.swing.JFrame {
                 rangkaianparalelMouseClicked(evt);
             }
         });
-        getContentPane().add(rangkaianparalel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
-
-        rangkaiancampuran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-campuran.png"))); // NOI18N
-        rangkaiancampuran.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rangkaiancampuranMouseClicked(evt);
-            }
-        });
-        getContentPane().add(rangkaiancampuran, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+        getContentPane().add(rangkaianparalel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
 
         rangkaianrc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-rc.png"))); // NOI18N
         rangkaianrc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,7 +144,7 @@ public class Home extends javax.swing.JFrame {
                 rangkaianrcMouseClicked(evt);
             }
         });
-        getContentPane().add(rangkaianrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        getContentPane().add(rangkaianrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/bg.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
@@ -250,15 +241,6 @@ public class Home extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_rangkaianparalelMouseClicked
 
-    private void rangkaiancampuranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaiancampuranMouseClicked
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RangkaianCampuran().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_rangkaiancampuranMouseClicked
-
     private void rangkaianrcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianrcMouseClicked
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -326,7 +308,6 @@ public class Home extends javax.swing.JFrame {
     public static javax.swing.JLabel labeltegangan;
     private javax.swing.JTextField parameter1;
     private javax.swing.JTextField parameter2;
-    private javax.swing.JLabel rangkaiancampuran;
     private javax.swing.JLabel rangkaianparalel;
     private javax.swing.JLabel rangkaianrc;
     private javax.swing.JLabel rangkaianseri;
