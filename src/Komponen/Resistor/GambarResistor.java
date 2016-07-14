@@ -7,7 +7,9 @@ package Komponen.Resistor;
 
 import Komponen.Hitung;
 import Komponen.Plot;
+import Komponen.PlotDasar;
 import simulatorrangkaianlistrik.Home;
+import simulatorrangkaianlistrik.RangkaianRC;
 /**
  *
  * @author Agung DP
@@ -371,12 +373,16 @@ public class GambarResistor extends javax.swing.JFrame {
             outputnilai.setText("Nilai = "+hasil+" Ohm");
         }
         //Hitung.setHambatan(nilaihambatan);
+        Hitung.setHambatan(nilaihambatan);
+        Plot.setHambatan(nilaihambatan);
+        PlotDasar.setHambatan(nilaihambatan);
+        RangkaianRC.labelresistor.setText(Long.toString(nilaihambatan)+ " Ohm");
+        //setVisible(false);
     }//GEN-LAST:event_hitungMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
         setVisible(false);
-        Home.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" ohm");
     }//GEN-LAST:event_backMouseClicked
 
     private void OkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkMouseClicked
@@ -399,6 +405,8 @@ public class GambarResistor extends javax.swing.JFrame {
         long nilaihambatan2 = NilaiResistor.getHambatanMinimum();
         Hitung.setHambatan(nilaihambatan2);
         Plot.setHambatan(nilaihambatan2);
+        PlotDasar.setHambatan(nilaihambatan2);
+        RangkaianRC.labelresistor.setText(Long.toString(nilaihambatan2)+ " Ohm");
         //end
     }//GEN-LAST:event_OkMouseClicked
 
@@ -421,6 +429,7 @@ public class GambarResistor extends javax.swing.JFrame {
         //method untuk main page
         long nilaihambatan2 = NilaiResistor.getHambatanMinimum();
         Hitung.setHambatan(nilaihambatan2);
+        //setVisible(false);
         //end
     }//GEN-LAST:event_OkActionPerformed
 

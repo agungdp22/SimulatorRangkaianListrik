@@ -5,11 +5,15 @@
  */
 package simulatorrangkaianlistrik;
 
+import Komponen.Hitung;
 import Komponen.Oscilloscope;
+import Komponen.Plot;
+import Komponen.PlotDasar;
 import Komponen.Resistor.GambarResistor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+import simulatorrangkaianlistrik.RangkaianRC;
 
 /**
  *
@@ -21,13 +25,45 @@ public class RangkaianSeri extends javax.swing.JFrame {
      * Creates new form RangkaianSeri
      */
     int klik = 0;
-    int status;
+    int status = 0;
+    int waktu = 0;
     private Timer timer;
+    private int plotsinusoidal = 0;
+    private int plotdiskret = 0;
+    
     public RangkaianSeri() {
         initComponents();
         this.setLocationRelativeTo(null);
         led.setEnabled(false);
+        namasakelar.setText("Off");
+        teganganlabel.setVisible(false);
+        tegangan.setVisible(false);
+        frekuensilabel.setVisible(false);
+        frekuensi.setVisible(false);
     }  
+    
+    private void start(){
+        int terima =(int) (11-(PlotDasar.getFrek()));
+        int speed = (int) terima * 100;
+        status = 1;
+        //int r = waktu;
+        ActionListener action = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent evt){
+                if(waktu%2 == 0){
+                    led.setEnabled(true);
+                    labelampere.setText(Double.toString(Hitung.getHitungArus()));
+                }else{
+                    led.setEnabled(false);
+                    labelampere.setText("-" +Double.toString(Hitung.getHitungArus()));
+                }
+                waktu++;
+            }
+        };
+        
+        timer = new Timer(speed, action);
+        timer.start();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,73 +74,80 @@ public class RangkaianSeri extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelampere = new javax.swing.JLabel();
+        amperemeter = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         led = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         R1 = new javax.swing.JLabel();
-        R2 = new javax.swing.JLabel();
-        R3 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         saklar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        tegangan = new javax.swing.JLabel();
+        frekuensi = new javax.swing.JLabel();
+        teganganlabel = new javax.swing.JLabel();
+        frekuensilabel = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        namasakelar = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        layardasar = new javax.swing.JPanel();
+        oski = new javax.swing.JLabel();
+        SliderTegangan = new javax.swing.JSlider();
+        SliderFrekuensi = new javax.swing.JSlider();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelampere.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelampere.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelampere.setText("0");
+        getContentPane().add(labelampere, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 90, 60));
+
+        amperemeter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/amperemeter.png"))); // NOI18N
+        getContentPane().add(amperemeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 320, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 90, 20));
 
         led.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/led.png"))); // NOI18N
-        getContentPane().add(led, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+        getContentPane().add(led, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 20));
 
         R1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
-        getContentPane().add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
-
-        R2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
-        getContentPane().add(R2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
-
-        R3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/resistor-rangkaian.png"))); // NOI18N
-        R3.addMouseListener(new java.awt.event.MouseAdapter() {
+        R1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                R3MouseClicked(evt);
+                R1MouseClicked(evt);
             }
         });
-        getContentPane().add(R3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
+        getContentPane().add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 60, 140));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 60, 50));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Komponen/baterai.png"))); // NOI18N
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 60, 70));
 
         saklar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saklarMouseClicked(evt);
             }
         });
-        getContentPane().add(saklar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 40, 30));
+        getContentPane().add(saklar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 40, 40));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 130, 20));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 30, 20));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 60, 60));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 60, 160));
 
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/Keluar.png"))); // NOI18N
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,30 +158,121 @@ public class RangkaianSeri extends javax.swing.JFrame {
         getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Myriad Pro", 0, 36)); // NOI18N
-        jLabel12.setText("Rangkaian Seri Elektronika");
+        jLabel12.setText("Rangkaian Dasar Elektronika");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 60, 190));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 60, 170));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 90, 20));
+
+        tegangan.setText("Tegangan: ");
+        getContentPane().add(tegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
+
+        frekuensi.setText("Frekuensi:");
+        getContentPane().add(frekuensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, -1, 30));
+
+        teganganlabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(teganganlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 70, 40));
+
+        frekuensilabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(frekuensilabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 90, 70, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("+");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setText("-");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 20, 40));
+
+        namasakelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(namasakelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 30, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Kotak" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, -1, -1));
+        getContentPane().add(layardasar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 290, 220));
+
+        oski.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/oscilloscope.png"))); // NOI18N
+        getContentPane().add(oski, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
+
+        SliderTegangan.setMajorTickSpacing(1);
+        SliderTegangan.setMaximum(10);
+        SliderTegangan.setPaintLabels(true);
+        SliderTegangan.setPaintTicks(true);
+        SliderTegangan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SliderTeganganMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SliderTeganganMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SliderTeganganMouseReleased(evt);
+            }
+        });
+        getContentPane().add(SliderTegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, -1, -1));
+
+        SliderFrekuensi.setMajorTickSpacing(1);
+        SliderFrekuensi.setMaximum(10);
+        SliderFrekuensi.setPaintLabels(true);
+        SliderFrekuensi.setPaintTicks(true);
+        SliderFrekuensi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SliderFrekuensiMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SliderFrekuensiMouseReleased(evt);
+            }
+        });
+        getContentPane().add(SliderFrekuensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, -1, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 130, 20));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-mendatar.png"))); // NOI18N
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 30, 20));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/kabel-tegak.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 60, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Oscilloscope().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_jLabel7MouseClicked
 
     private void saklarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saklarMouseClicked
         // TODO add your handling code here:
         klik++;
         if(klik%2 == 1) {
-            led.setEnabled(true);
-            status = 1;
+            namasakelar.setText("Off");
+
+
+            led.setEnabled(false);
+            labelampere.setText("0");
+            timer.stop();
         }
         else {
-            led.setEnabled(false);
+            namasakelar.setText("On");
+            led.setEnabled(true);
+            //labelampere.setText("0");
+            start();
             status = 0;
         }
     }//GEN-LAST:event_saklarMouseClicked
@@ -146,16 +280,99 @@ public class RangkaianSeri extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         // TODO add your handling code here:
         setVisible(false);
+        //PlotDasar.updatepanel();
     }//GEN-LAST:event_exitMouseClicked
 
-    private void R3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_R3MouseClicked
+    private void R1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_R1MouseClicked
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GambarResistor().setVisible(true);
             }
         });
-    }//GEN-LAST:event_R3MouseClicked
+    }//GEN-LAST:event_R1MouseClicked
+
+    private void SliderTeganganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_SliderTeganganMouseClicked
+
+    private void SliderTeganganMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMousePressed
+        // TODO add your handling code here:
+        layardasar.repaint();
+    }//GEN-LAST:event_SliderTeganganMousePressed
+
+    private void SliderTeganganMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMouseReleased
+        // TODO add your handling code here:
+        double a = Double.valueOf(SliderTegangan.getValue());
+        String z = Double.toString(a);
+        //jLabel2.setText(z);
+        PlotDasar.setAmpli(a*10);
+        
+        teganganlabel.setVisible(true);
+        tegangan.setVisible(true);
+        teganganlabel.setText(Double.toString(PlotDasar.getAmpli())+ " Volt");
+        
+        Hitung.setTegangan(a);
+        PlotDasar.KurvaDiskret1();
+    }//GEN-LAST:event_SliderTeganganMouseReleased
+
+    private void SliderFrekuensiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMousePressed
+        // TODO add your handling code here:
+        layardasar.repaint();
+        if(status == 1) {
+            timer.stop();
+            status = 0;
+        }
+    }//GEN-LAST:event_SliderFrekuensiMousePressed
+
+    private void SliderFrekuensiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderFrekuensiMouseReleased
+        // TODO add your handling code here:
+        double a = Double.valueOf(SliderFrekuensi.getValue());
+        String z = Double.toString(a);
+        //jLabel4.setText(z);
+        PlotDasar.setFrek(a);
+        
+        frekuensilabel.setVisible(true);
+        frekuensi.setVisible(true);
+        frekuensilabel.setText(Double.toString(PlotDasar.getFrek())+ " Hertz");
+        
+            PlotDasar.KurvaDiskret1();
+        
+        namasakelar.setText("On");
+            start();
+            
+            
+            Hitung.setTegangan(PlotDasar.getAmpli());
+            Hitung.setHambatan(PlotDasar.getHambatan());
+            status = 1;
+    }//GEN-LAST:event_SliderFrekuensiMouseReleased
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+        layardasar.repaint();
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        int p = jComboBox1.getSelectedIndex();
+        switch (p) {
+            case 1:
+            plotsinusoidal = 0;
+            plotdiskret = 1;
+            PlotDasar.KurvaDiskret1();
+            break;
+            
+            case 2:
+            plotsinusoidal = 1;
+            plotdiskret = 0;
+            //PlotDasar.KurvaSinusoidal();
+            break;
+
+            default:
+            break;
+        }
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments
@@ -194,18 +411,34 @@ public class RangkaianSeri extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel R1;
-    private javax.swing.JLabel R2;
-    private javax.swing.JLabel R3;
+    private javax.swing.JSlider SliderFrekuensi;
+    private javax.swing.JSlider SliderTegangan;
+    private javax.swing.JLabel amperemeter;
     private javax.swing.JLabel exit;
+    private javax.swing.JLabel frekuensi;
+    private javax.swing.JLabel frekuensilabel;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelampere;
+    public static javax.swing.JPanel layardasar;
     private javax.swing.JLabel led;
+    private javax.swing.JLabel namasakelar;
+    private javax.swing.JLabel oski;
     private javax.swing.JButton saklar;
+    private javax.swing.JLabel tegangan;
+    private javax.swing.JLabel teganganlabel;
     // End of variables declaration//GEN-END:variables
 }

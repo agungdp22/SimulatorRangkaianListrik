@@ -5,6 +5,8 @@
  */
 package Komponen;
 
+import simulatorrangkaianlistrik.RangkaianRC;
+
 /**
  *
  * @author Agung DP
@@ -114,6 +116,7 @@ public class Kapasitor extends javax.swing.JFrame {
         // TODO add your handling code here:
         String hasil2 = area.getText();
         Plot.setKapasitor(Double.parseDouble(hasil2));
+        RangkaianRC.labelkapasitor.setText(hasil2+ " mikroFarad");
         setVisible(false);
     }//GEN-LAST:event_okMouseClicked
 

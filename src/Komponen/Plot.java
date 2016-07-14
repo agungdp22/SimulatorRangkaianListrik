@@ -19,13 +19,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import simulatorrangkaianlistrik.RangkaianRC;
+import simulatorrangkaianlistrik.RangkaianSeri;
     
 public class Plot extends Oscilloscope {
         private static double amplitudo;
         private static double frekuensi;
         private static double C;
         private static double R;
-        static JPanel layarRC = RangkaianRC.layar;
+        private static int status;
+        static JPanel layarRC1 = RangkaianRC.layar;
+        static JPanel layardasar = RangkaianSeri.layardasar;
+        
+        
+        
+        public static void setStatus(int status){
+            Plot.status = status;
+        }
+        public static int getStatus(){
+            return status;
+        }
         
         public static void setAmplitudo(double nilai){
             Plot.amplitudo = nilai;
@@ -39,21 +51,24 @@ public class Plot extends Oscilloscope {
         public static void setHambatan(double resistor){
             Plot.R = resistor;
         }
+        public static double getHambatan(){
+            return R;
+        }
         
         public static double getFrekuensi(){
             return frekuensi;
         }
         public static double getAmplitudo(){
-            return amplitudo;
+            return amplitudo/10;
         }
         public static void updatepanel(){
             jPanel1.updateUI();
-            layarRC.updateUI();
+            layarRC1.updateUI();
         }
         
         public static void KurvaSinusoidal(){
             Graphics kurva = jPanel1.getGraphics();
-            double F = frekuensi/3;
+            double F = frekuensi/2.88;
             Polygon p = new Polygon();
             for (int x = 0; x <= 288; x++) {
                 p.addPoint(x, 110 - (int) (amplitudo * Math.sin((x / 100.0) * 2 * F * Math.PI)));
@@ -64,13 +79,13 @@ public class Plot extends Oscilloscope {
         
         public static void KurvaDiskret(){
             Graphics kurva = jPanel1.getGraphics();
-            Graphics kurva2 = layarRC.getGraphics();
+            Graphics kurva2 = layarRC1.getGraphics();
             Polygon p = new Polygon();
-            int h = (int)(300/frekuensi);
+            int h = (int)(150/frekuensi);
             
             int titikawal = 0;
             int titikakhir = 300;
-            for(int y=1; y<=frekuensi;y++){
+            for(int y=1; y<=2*frekuensi;y++){
                titikakhir = titikawal + h;
                for (int x = titikawal; x <= titikakhir; x++) {
                     if(y%2 == 1) {
@@ -89,13 +104,13 @@ public class Plot extends Oscilloscope {
         }
         
         public static void KurvaKapasitor(){
-            Graphics kurva = layarRC.getGraphics();
+            Graphics kurva = layarRC1.getGraphics();
             Polygon p = new Polygon();
-            int h = (int)(300/frekuensi);
+            int h = (int)(150/frekuensi);
             
             int titikawal = 0;
             int titikakhir ;
-            for(int y=1; y<=frekuensi;y++){
+            for(int y=1; y<=2*frekuensi;y++){
                titikakhir = titikawal + h;
                int xx = 0;
                for (int x = titikawal; x <= titikakhir; x++) {
@@ -116,13 +131,13 @@ public class Plot extends Oscilloscope {
             int waktu = (int) (300/frekuensi);
             double Vc = 1 - Math.exp(-waktu/(R*C));
             
-            Graphics kurva = layarRC.getGraphics();
+            Graphics kurva = layarRC1.getGraphics();
             Polygon p = new Polygon();
-            int h = (int)(300/frekuensi);
+            int h = (int)(150/frekuensi);
             
             int titikawal = 0;
             int titikakhir ;
-            for(int y=1; y<=frekuensi;y++){
+            for(int y=1; y<=2*frekuensi;y++){
                titikakhir = titikawal + h;
                int xx =0;
                for (int x = titikawal; x <= titikakhir; x++) {
@@ -138,6 +153,8 @@ public class Plot extends Oscilloscope {
             kurva.setColor(Color.black);
             kurva.drawPolyline(p.xpoints, p.ypoints, p.npoints);
         }
+        
+        
 }
 /*
 class GraphPanel extends JPanel {

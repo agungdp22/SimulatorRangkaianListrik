@@ -28,6 +28,7 @@ public class RangkaianRC extends javax.swing.JFrame {
         ket.setVisible(false);
         ket1.setVisible(false);
         ket2.setVisible(false);
+        jComboBox1.setVisible(false);
     }
 
     /**
@@ -59,6 +60,8 @@ public class RangkaianRC extends javax.swing.JFrame {
         ket = new javax.swing.JLabel();
         ket2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        labelresistor = new javax.swing.JLabel();
+        labelkapasitor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -175,6 +178,14 @@ public class RangkaianRC extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, -1, -1));
 
+        labelresistor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelresistor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(labelresistor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 90, 30));
+
+        labelkapasitor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelkapasitor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(labelkapasitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, 200, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,6 +201,7 @@ public class RangkaianRC extends javax.swing.JFrame {
                 new Oscilloscope().setVisible(true);
             }
         });
+        jComboBox1.setVisible(true);
     }//GEN-LAST:event_sumberteganganMouseClicked
 
     private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
@@ -222,7 +234,7 @@ public class RangkaianRC extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void resistorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resistorMouseClicked
-
+        // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         new GambarResistor().setVisible(true);
@@ -300,6 +312,8 @@ public class RangkaianRC extends javax.swing.JFrame {
     private javax.swing.JLabel ket;
     private javax.swing.JLabel ket1;
     private javax.swing.JLabel ket2;
+    public static javax.swing.JLabel labelkapasitor;
+    public static javax.swing.JLabel labelresistor;
     public static javax.swing.JPanel layar;
     private javax.swing.JLabel oskiloskopkapasitor;
     private javax.swing.JLabel resistor;

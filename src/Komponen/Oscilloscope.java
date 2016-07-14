@@ -64,7 +64,7 @@ public class Oscilloscope extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        backbutton = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         SliderFrekuensi = new javax.swing.JSlider();
@@ -103,21 +103,21 @@ public class Oscilloscope extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 80, 30));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 290, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/BACK_ICON.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                backbuttonMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel3MousePressed(evt);
+                backbuttonMousePressed(evt);
             }
         });
-        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        backbutton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel3MouseDragged(evt);
+                backbuttonMouseDragged(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+        getContentPane().add(backbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sinyal", "Sinusoidal", "Kotak" }));
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,54 +170,36 @@ public class Oscilloscope extends javax.swing.JFrame {
 
     
     
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
         setVisible(false);
         double nilaitegangan = Plot.getAmplitudo();
         Hitung.setTegangan(nilaitegangan);
-        Home.labeltegangan.setText(Double.toString(nilaitegangan)+" volt");
         //Rangkaian.labelnilaihambatan.setText(Long.toString(NilaiResistor.getHambatanMinimum())+" volt");
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_backbuttonMouseClicked
 
-    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+    private void backbuttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MousePressed
+    }//GEN-LAST:event_backbuttonMousePressed
 
-    private void jLabel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseDragged
+    private void backbuttonMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseDragged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseDragged
+    }//GEN-LAST:event_backbuttonMouseDragged
 
     private void SliderTeganganMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SliderTeganganMouseReleased
         // TODO add your handling code here:
         double a = Double.valueOf(SliderTegangan.getValue());
         String z = Double.toString(a);
-        //double nilai = Double.parseDouble(inputtegangan.getText());
         jLabel2.setText(z);
         Plot.setAmplitudo(a*10);
-        //Plot.setFrekuensi(100);
+        Hitung.setTegangan(a);
         if(plotdiskret == 1) {
             Plot.KurvaDiskret();
             plotsinusoidal = 0;
-            plotkapasitor = 0;
-            plotresistor = 0;
         }
         else if(plotsinusoidal == 1) {
             Plot.KurvaSinusoidal();
             plotdiskret = 0;
-            plotkapasitor = 0;
-            plotresistor = 0;
-        }
-        else if(plotkapasitor == 1) {
-            Plot.KurvaKapasitor();
-            plotdiskret = 0;
-            plotsinusoidal = 0;
-            plotresistor = 0;
-        }
-        else if(plotresistor == 1) {
-            Plot.KurvaResistor();
-            plotdiskret = 0;
-            plotsinusoidal = 0;
-            plotkapasitor = 0;
         }
     }//GEN-LAST:event_SliderTeganganMouseReleased
 
@@ -236,34 +218,16 @@ public class Oscilloscope extends javax.swing.JFrame {
         // TODO add your handling code here:
         double a = Double.valueOf(SliderFrekuensi.getValue());
         String z = Double.toString(a);
-        //double nilai = Double.parseDouble(inputtegangan.getText());
         jLabel4.setText(z);
-        //Plot.setAmplitudo(a);
         Plot.setFrekuensi(a);
         
         if(plotdiskret == 1) {
             Plot.KurvaDiskret();
             plotsinusoidal = 0;
-            plotkapasitor = 0;
-            plotresistor = 0;
         }
         else if(plotsinusoidal == 1) {
             Plot.KurvaSinusoidal();
             plotdiskret = 0;
-            plotkapasitor = 0;
-            plotresistor = 0;
-        }
-        else if(plotkapasitor == 1) {
-            Plot.KurvaKapasitor();
-            plotdiskret = 0;
-            plotsinusoidal = 0;
-            plotresistor = 0;
-        }
-        else if(plotresistor == 1) {
-            Plot.KurvaResistor();
-            plotdiskret = 0;
-            plotsinusoidal = 0;
-            plotkapasitor = 0;
         }
     }//GEN-LAST:event_SliderFrekuensiMouseReleased
 
@@ -280,31 +244,16 @@ public class Oscilloscope extends javax.swing.JFrame {
             case 1:
                 plotsinusoidal = 1;
                 plotdiskret = 0;
-                plotkapasitor = 0;
-                plotresistor = 0;
-                Plot.KurvaSinusoidal();
+//                if(Plot.getStatus() == 1) 
+                    Plot.KurvaSinusoidal();
+                
                 break;
             case 2:
                 plotsinusoidal = 0;
                 plotdiskret = 1;
-                plotkapasitor = 0;
-                plotresistor = 0;
                 Plot.KurvaDiskret();
                 break;
-            case 3:
-                plotsinusoidal = 0;
-                plotdiskret = 0;
-                plotkapasitor = 1;
-                plotresistor = 0;
-                Plot.KurvaKapasitor();
-                break;
-            case 4:
-                plotsinusoidal = 0;
-                plotdiskret = 0;
-                plotkapasitor = 0;
-                plotresistor = 1;
-                Plot.KurvaResistor();
-            break;
+            
             default:
                 break;
         }
@@ -318,7 +267,6 @@ public class Oscilloscope extends javax.swing.JFrame {
     private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
         // TODO add your handling code here:
         setVisible(false);
-        double nilaitegangan = Plot.getAmplitudo();
     }//GEN-LAST:event_okMouseClicked
 
 //    public static class Terima{
@@ -456,16 +404,16 @@ public class Oscilloscope extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider SliderFrekuensi;
     private javax.swing.JSlider SliderTegangan;
+    private javax.swing.JLabel backbutton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    protected static javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ package simulatorrangkaianlistrik;
 import Komponen.Resistor.GambarResistor;
 import Komponen.Hitung;
 import Komponen.Oscilloscope;
+import Komponen.Plot;
 //import Komponen.Resistor;
 /**
  *
@@ -33,72 +34,14 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltegangan = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        labelnilaihambatan = new javax.swing.JLabel();
-        parameter2 = new javax.swing.JTextField();
-        arus = new javax.swing.JLabel();
-        parameter1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         field1 = new javax.swing.JLabel();
         field2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         rangkaianseri = new javax.swing.JLabel();
-        rangkaianparalel = new javax.swing.JLabel();
         rangkaianrc = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(labeltegangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 110, 40));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/HITUNG SURVIVAL_ICON.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, -1, -1));
-
-        labelnilaihambatan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(labelnilaihambatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 110, 20));
-
-        parameter2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        parameter2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                parameter2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(parameter2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 131, 37));
-
-        arus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(arus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 193, 37));
-
-        parameter1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        parameter1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                parameter1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(parameter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 128, 37));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--", "Hitung Arus", "Hitung Tegangan", "Hitung Hambatan" }));
-        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBox1PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 37));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("OUTPUT");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, -1, -1));
 
         field1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 130, 20));
@@ -106,37 +49,13 @@ public class Home extends javax.swing.JFrame {
         field2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 120, 20));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/PANDUAN  PARAMETER.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/tentukantegangan.png"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, -1, -1));
-
         rangkaianseri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-seri.png"))); // NOI18N
         rangkaianseri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rangkaianseriMouseClicked(evt);
             }
         });
-        getContentPane().add(rangkaianseri, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
-
-        rangkaianparalel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-paralel.png"))); // NOI18N
-        rangkaianparalel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rangkaianparalelMouseClicked(evt);
-            }
-        });
-        getContentPane().add(rangkaianparalel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
+        getContentPane().add(rangkaianseri, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
         rangkaianrc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/rangkaian-rc.png"))); // NOI18N
         rangkaianrc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +63,7 @@ public class Home extends javax.swing.JFrame {
                 rangkaianrcMouseClicked(evt);
             }
         });
-        getContentPane().add(rangkaianrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+        getContentPane().add(rangkaianrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/bg.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
@@ -152,79 +71,9 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        int p = jComboBox1.getSelectedIndex();
-        switch (p) {
-            case 1:
-                //Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
-                //Hitung.setHambatan(Double.parseDouble(parameter2.getText()));
-                field2.setText("Hambatan");
-                //String nilaiakhir = Double.toString(Hitung.getHitungArus());
-                arus.setText("Arus = "+Hitung.getHitungArus()+" A");
-                break;
-            case 2:
-                //Hitung.setArus(Double.parseDouble(parameter1.getText()));
-                //Hitung.setHambatan(Double.parseDouble(parameter2.getText()));
-                field1.setText("Arus");
-                field2.setText("Hambatan");
-                arus.setText("Tegangan = "+Hitung.getHitungTegangan()+" V");
-                break;
-            case 3:
-                //Hitung.setTegangan(Double.parseDouble(parameter1.getText()));
-                //Hitung.setArus(Double.parseDouble(parameter2.getText()));
-                field1.setText("Tegangan");
-                field2.setText("Arus");
-                arus.setText("Hambatan = "+Hitung.getHitungHambatan()+" Ohm");
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        int p = jComboBox1.getSelectedIndex();
-        switch (p) {
-            case 1:
-                field1.setText("Tegangan (Volt)");
-                field2.setText("Hambatan (Ohm)");
-                //labelnilaihambatan.setText(Long.toString(Resistor.getHambatanMinimum()));
-                field1.setText("Tegangan");
-                break;
-            case 2:
-                field1.setText("Arus (Ampere)");
-                field2.setText("Hambatan (Ohm)");
-                break;
-            case 3:
-                field1.setText("Tegangan (Volt)");
-                field2.setText("Arus (Ohm)");
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GambarResistor().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Oscilloscope().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_jLabel5MouseClicked
-
     private void rangkaianseriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianseriMouseClicked
         // TODO add your handling code here:
+        //Plot.setStatus(1);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RangkaianSeri().setVisible(true);
@@ -232,31 +81,15 @@ public class Home extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_rangkaianseriMouseClicked
 
-    private void rangkaianparalelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianparalelMouseClicked
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RangkaianParalel().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_rangkaianparalelMouseClicked
-
     private void rangkaianrcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangkaianrcMouseClicked
         // TODO add your handling code here:
+        //Plot.setStatus(2);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RangkaianRC().setVisible(true);
             }
         });
     }//GEN-LAST:event_rangkaianrcMouseClicked
-
-    private void parameter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_parameter1ActionPerformed
-
-    private void parameter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameter2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_parameter2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,20 +128,9 @@ public class Home extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel arus;
     private javax.swing.JLabel background;
     private javax.swing.JLabel field1;
     private javax.swing.JLabel field2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    public static javax.swing.JLabel labelnilaihambatan;
-    public static javax.swing.JLabel labeltegangan;
-    private javax.swing.JTextField parameter1;
-    private javax.swing.JTextField parameter2;
-    private javax.swing.JLabel rangkaianparalel;
     private javax.swing.JLabel rangkaianrc;
     private javax.swing.JLabel rangkaianseri;
     // End of variables declaration//GEN-END:variables

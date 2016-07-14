@@ -23,13 +23,15 @@ public static void main(String args[]) {
         for(int i=0;i<=100;i++){
             try {
                 pb.getProgressBar().setValue(i);
-                Thread.sleep(25);
+                Thread.sleep(15);
             } catch (InterruptedException ex) {
                 Logger.getLogger(LaunchProgressBar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         pb.dispose();
         new Home().setVisible(true);
+        new RangkaianSeri().setVisible(false);
+        new RangkaianRC().setVisible(false);
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

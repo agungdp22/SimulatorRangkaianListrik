@@ -16,6 +16,14 @@ public class Hitung {
     private static double arus;
     private static double tegangan;
     private static double hambatan; 
+    private static int status;
+    
+    public static void setStatus(int status){
+            Hitung.status = status;
+        }
+    public static int getStatus(){
+        return status;
+    }
     
     public static void setArus(double arus){
         Hitung.arus = arus;
@@ -23,6 +31,10 @@ public class Hitung {
     
     public static void setTegangan(double tegangan){
         Hitung.tegangan = tegangan;
+    }
+    
+    public static double getTegangan(){
+        return tegangan;
     }
     
     public static void setHambatan(double hambatan){
